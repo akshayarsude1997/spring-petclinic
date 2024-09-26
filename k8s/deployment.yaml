@@ -15,7 +15,7 @@ spec:
         app: petclinic
     spec:
       containers:
-      - name: petclinic_container
-        image: nginx:1.14.2
+      - name: petclinic
+        image: 340752795185.dkr.ecr.us-east-1.amazonaws.com/petclinic-image:latest
         ports:
         - containerPort: 8080
