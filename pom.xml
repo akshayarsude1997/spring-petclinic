@@ -69,6 +69,17 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- sonar dp -->
+    <build>
+       <plugins>
+         <plugin>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>3.9.0.2155</version> <!-- Check for the latest version -->
+         </plugin>
+       </plugins>
+    </build>
+
 
     <!-- Databases - Uses H2 by default -->
     <dependency>
