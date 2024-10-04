@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: petclinic-ingress
-  namespace: your-namespace  # Replace with the appropriate namespace
+  namespace: three-tier  # Replace with the appropriate namespace
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing  # If using AWS ALB
     alb.ingress.kubernetes.io/target-type: ip
