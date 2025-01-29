@@ -1,5 +1,6 @@
+#stage 1
 # Use a base image with OpenJDK
-FROM openjdk:17-jdk-slim
+FROM openjdk:17-jdk-slim as build
 
 # Set the working directory
 WORKDIR /app
@@ -13,11 +14,21 @@ RUN apt-get update && \
 # Copy the project files into the container
 COPY . .
 
-# Expose the port
-EXPOSE 8080
-
 # Package the application using Maven
 RUN ./mvnw package
 
-# Set the command to run the application
-CMD ["java", "-jar", "target/spring-petclinic-3.3.0-SNAPSHOT.jar"]
+#stage 2
+# Stage 2: Create a Distroless image
+FROM gcr.io/distroless/java17
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the packaged JAR from the build stage
+COPY --from=build /app/target/spring-petclinic-3.3.0-SNAPSHOT.jar app.jar
+
+#Expose port
+EXPOSE 8080
+
+#cmd command
+CMD ["app.jar"]
